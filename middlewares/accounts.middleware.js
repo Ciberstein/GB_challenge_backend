@@ -110,10 +110,8 @@ exports.accountVerify = catchAsync(async (req, res, next) => {
 
     return res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-      domain: process.env.FRONTEND_DOMAIN, 
-      maxAge: 30 * 24 * 60 * 60 * 1000 
+      secure: true,
+      sameSite: 'strict', 
     }).status(200).json({
       status: "success",
       message: "Account has been logged",
