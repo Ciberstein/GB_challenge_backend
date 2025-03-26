@@ -1,36 +1,8 @@
 const AppError = require("../utils/appError");
 const Account = require("../models/accounts.model");
 const hashPassword = require("../utils/hashPassword");
-const serviceAccount = require("../firebase/firebase");
 const catchAsync = require("../utils/catchAsync");
 const { generateJWT } = require("../utils/jwt");
-const admin = require("firebase-admin");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
-
-exports.firebase = catchAsync(async (req, res, next) => {
-  const { token } = req.body;
-
-  const data = await admin.auth().verifyIdToken(token);
-
-  if (!data) {
-    return next(new AppError(`Error on decoding data`, 401));
-  }
-
-  const account = await Account.findOne({
-    where: { email: data.email.toLowerCase() },
-  });
-
-  if (!account) {
-    return res.status(201).send(data);
-  }
-
-  req.account = account;
-
-  next();
-});
 
 exports.validRegisterAccount = catchAsync(async (req, res, next) => {
   const { email } = req.body;

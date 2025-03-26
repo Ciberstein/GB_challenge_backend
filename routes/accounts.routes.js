@@ -42,16 +42,6 @@ router.post(
   accountController.loginAccount
 );
 router.post(
-  "/login/firebase",
-  validation.loginFirebase,
-  accountMiddleware.firebase,
-  accountMiddleware.accountVerify,
-  authMiddleware.authCodeGenerate,
-  authMiddleware.userHasCode,
-  authMiddleware.sendMailCode,
-  accountController.loginAccount
-);
-router.post(
   "/recovery",
   validation.recovery,
   accountMiddleware.validAuthCodeReceipt,

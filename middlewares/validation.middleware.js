@@ -125,15 +125,6 @@ exports.registerValidation = [
   validFields,
 ];
 
-exports.loginFirebase = [
-  body("token")
-    .notEmpty()
-    .withMessage("Token cannot be empty")
-    .trim(),
-
-  validFields,
-];
-
 exports.validReceiver = [
   body("receiver")
     .notEmpty()
