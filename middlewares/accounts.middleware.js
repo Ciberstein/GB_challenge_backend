@@ -50,7 +50,7 @@ exports.createAccount = catchAsync(async (req, res, next) => {
     });
   } while (webName);
 
-  const account = await Account.create({
+  const create = await Account.create({
     status: email_verified ? "active" : "pending",
     username,
     first_name, 
@@ -60,9 +60,16 @@ exports.createAccount = catchAsync(async (req, res, next) => {
     attributes: ["id", "email", "status"],
   });
 
-  if (!account) {
+  if (!create) {
     next(new AppError("Error on register", 500));
   }
+
+  const account = await Account.findOne({
+    where: {
+      id: create.id
+    },
+    attributes: ["id", "email", "status"],
+  });
 
   if (email_verified) {
     return res.status(201).json({
