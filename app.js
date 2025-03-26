@@ -33,7 +33,6 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 app.use("/api/v1/auth", accountsRouter);
 app.use("/api/v1/events", eventsRouter);
 
-
 app.all("*", (req, res, next) =>
   next(
     new AppError(`The route ${req.originalUrl} was not found in this site`, 404)

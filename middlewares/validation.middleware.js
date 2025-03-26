@@ -226,12 +226,41 @@ exports.updatePaswordValidation = [
   validFields,
 ];
 
-exports.reserveEvent = [
+exports.validIdParam = [
   param("id")
     .notEmpty()
-    .withMessage("Auth code is required")
+    .withMessage("ID is required")
     .isInt()
     .withMessage("ID must be a valid integer"),
+
+  validFields,
+];
+
+
+exports.validEventParams = [
+  body("title")
+    .notEmpty()
+    .withMessage("El título es requerido")
+    .isLength({ min: 5, max: 50 })
+    .withMessage("El título debe tener entre 5 y 50 caracteres"),
+  
+  body("description")
+    .notEmpty()
+    .withMessage("La descripción es requerida")
+    .isLength({ max: 300 })
+    .withMessage("La descripción debe tener 300 caracteres como máximo"),
+
+  body("expiredAt")
+    .notEmpty()
+    .withMessage("La fecha es requerida")
+    .isDate()
+    .withMessage("Formato no permitido para la fecha"),
+
+  body("capacity")
+    .notEmpty()
+    .withMessage("La capacidad es requerida")
+    .isInt()
+    .withMessage("Formato no permitido para la capacidad"),
 
   validFields,
 ];
