@@ -3,7 +3,7 @@ const hashPassword = require("../hashPassword");
 const accounts = [
     {
         email: "admin@eventify.com",
-        password: hashPassword("123456"),
+        password: hashPassword("IltErbIBlelaspitONAT"),
         username: "administrator",
         first_name: "Jhon",
         last_name: "Doe",
