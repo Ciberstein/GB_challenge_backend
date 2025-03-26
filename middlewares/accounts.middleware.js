@@ -113,8 +113,7 @@ exports.accountVerify = catchAsync(async (req, res, next) => {
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       domain: process.env.FRONTEND_DOMAIN, 
-      path: '/',
-      maxAge: 30 * 24 * 60 * 60 * 1000
+      maxAge: 30 * 24 * 60 * 60 * 1000 
     }).status(200).json({
       status: "success",
       message: "Account has been logged",

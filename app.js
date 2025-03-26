@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(cors(corsConfig));
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
-//app.use("/api/v1", limiter);
+app.use("/api/v1", limiter);
 app.use("/api/v1/auth", accountsRouter);
 app.use("/api/v1/events", eventsRouter);
 
